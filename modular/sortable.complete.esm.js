@@ -1441,15 +1441,7 @@ Sortable.prototype =
   touch) {
     touch = touch || evt.pointerType == 'touch' && evt;
 
-    if (!this.nativeDraggable || touch) {
-      if (this.options.supportPointer) {
-        on(document, 'pointermove', this._onTouchMove);
-      } else if (touch) {
-        on(document, 'touchmove', this._onTouchMove);
-      } else {
-        on(document, 'mousemove', this._onTouchMove);
-      }
-    } else {
+    if (!this.nativeDraggable || touch) ; else {
       on(dragEl, 'dragend', this);
       on(rootEl, 'dragstart', this._onDragStart);
     }
@@ -2555,16 +2547,8 @@ function _nextTick(fn) {
 
 function _cancelNextTick(id) {
   return clearTimeout(id);
-} // Fixed #973:
-
-
-if (documentExists) {
-  on(document, 'touchmove', function (evt) {
-    if ((Sortable.active || awaitingDragStarted) && evt.cancelable) {
-      evt.preventDefault();
-    }
-  });
-} // Export utils
+} // Fixed #973
+// Export utils
 
 
 Sortable.utils = {
@@ -2660,14 +2644,6 @@ function AutoScrollPlugin() {
     }) {
       if (this.sortable.nativeDraggable) {
         on(document, 'dragover', this._handleAutoScroll);
-      } else {
-        if (this.options.supportPointer) {
-          on(document, 'pointermove', this._handleFallbackAutoScroll);
-        } else if (originalEvent.touches) {
-          on(document, 'touchmove', this._handleFallbackAutoScroll);
-        } else {
-          on(document, 'mousemove', this._handleFallbackAutoScroll);
-        }
       }
     },
 

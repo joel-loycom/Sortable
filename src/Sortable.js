@@ -687,13 +687,7 @@ Sortable.prototype = /** @lends Sortable.prototype */ {
 		touch = touch || (evt.pointerType == 'touch' && evt);
 
 		if (!this.nativeDraggable || touch) {
-			if (this.options.supportPointer) {
-				on(document, 'pointermove', this._onTouchMove);
-			} else if (touch) {
-				on(document, 'touchmove', this._onTouchMove);
-			} else {
-				on(document, 'mousemove', this._onTouchMove);
-			}
+
 		} else {
 			on(dragEl, 'dragend', this);
 			on(rootEl, 'dragstart', this._onDragStart);
@@ -1929,15 +1923,7 @@ function _cancelNextTick(id) {
 	return clearTimeout(id);
 }
 
-// Fixed #973:
-if (documentExists) {
-	on(document, 'touchmove', function(evt) {
-		if ((Sortable.active || awaitingDragStarted) && evt.cancelable) {
-			evt.preventDefault();
-		}
-	});
-}
-
+// Fixed #973
 
 // Export utils
 Sortable.utils = {

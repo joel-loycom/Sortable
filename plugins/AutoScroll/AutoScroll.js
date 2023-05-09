@@ -48,13 +48,7 @@ function AutoScrollPlugin() {
 			if (this.sortable.nativeDraggable) {
 				on(document, 'dragover', this._handleAutoScroll);
 			} else {
-				if (this.options.supportPointer) {
-					on(document, 'pointermove', this._handleFallbackAutoScroll);
-				} else if (originalEvent.touches) {
-					on(document, 'touchmove', this._handleFallbackAutoScroll);
-				} else {
-					on(document, 'mousemove', this._handleFallbackAutoScroll);
-				}
+
 			}
 		},
 
