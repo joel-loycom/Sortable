@@ -1377,13 +1377,14 @@
 
         options.ignore.split(',').forEach(function (criteria) {
           find(dragEl, criteria.trim(), _disableDraggable);
-        });
-        on(ownerDocument, 'dragover', nearestEmptyInsertDetectEvent);
-        on(ownerDocument, 'mousemove', nearestEmptyInsertDetectEvent);
-        on(ownerDocument, 'touchmove', nearestEmptyInsertDetectEvent);
-        on(ownerDocument, 'mouseup', _this._onDrop);
-        on(ownerDocument, 'touchend', _this._onDrop);
-        on(ownerDocument, 'touchcancel', _this._onDrop); // Make dragEl draggable (must be before delay for FireFox)
+        }); // on(ownerDocument, 'dragover', nearestEmptyInsertDetectEvent);
+        // on(ownerDocument, 'mousemove', nearestEmptyInsertDetectEvent);
+        // on(ownerDocument, 'touchmove', nearestEmptyInsertDetectEvent);
+        //
+        // on(ownerDocument, 'mouseup', _this._onDrop);
+        // on(ownerDocument, 'touchend', _this._onDrop);
+        // on(ownerDocument, 'touchcancel', _this._onDrop);
+        // Make dragEl draggable (must be before delay for FireFox)
 
         if (FireFox && this.nativeDraggable) {
           this.options.touchStartThreshold = 4;
